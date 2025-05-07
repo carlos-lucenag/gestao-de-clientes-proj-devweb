@@ -1,0 +1,22 @@
+{
+  "name": "gestao-de-clientes-proj-devweb",
+  "version": "1.0.0",
+  "description": "'Sistema de gestão de clientes, simulando o uso em uma loja de artigos esportivos que vende via bot whatsapp'",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/carlos-lucenag/gestao-de-clientes-proj-devweb.git"
+  },
+  "author": "Carlos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/carlos-lucenag/gestao-de-clientes-proj-devweb/issues"
+  },
+  "homepage": "https://github.com/carlos-lucenag/gestao-de-clientes-proj-devweb#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}
