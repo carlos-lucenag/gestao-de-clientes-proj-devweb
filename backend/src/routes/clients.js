@@ -8,8 +8,8 @@ router.get('/', async (req, res) => {
     const resultado = await pool.query('SELECT * FROM clients');
     res.json(resultado.rows);
   } catch (err) {
-    console.error('Erro ao buscar clientes:', err);
-    res.status(500).json({ erro: 'Erro ao buscar clientes' });
+    console.error('Error getting clients:', err);
+    res.status(500).json({ erro: 'Error getting clients' });
   }
 });
 
