@@ -3,6 +3,11 @@ const pool = require("./backend/db");
 const app = express();
 const port = 3000;
 
+const clientsRoutes = require("./backend/src/routes/clients");
+
+app.use(express.json());
+app.use("/clients", clientsRoutes);
+
 app.get("/", (req, res) => {
   res.send("Hello World!");
 });
