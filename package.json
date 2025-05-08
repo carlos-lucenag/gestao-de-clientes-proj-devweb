@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/carlos-lucenag/gestao-de-clientes-proj-devweb#readme",
   "dependencies": {
-    "express": "^5.1.0"
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "pg": "^8.15.6"
   }
 }
