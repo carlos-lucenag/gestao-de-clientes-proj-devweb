@@ -5,7 +5,7 @@ const router = express.Router();
 import {
   getClients,
   getClientById,
-  createClient,
+  postClient,
   updateClient,
   deleteClient,
 } from "../controllers/clientController.mjs";
@@ -14,7 +14,7 @@ router.route("/").get(getClients);
 
 router.route("/:id").get(getClientById);
 
-router.route("/").post(createClient);
+router.route("/").post(postClient);
 
 router.route("/:id").put(updateClient);
 
