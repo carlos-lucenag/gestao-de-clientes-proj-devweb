@@ -3,6 +3,8 @@ import {
   deleteClientById,
   getClientById,
   getClients,
+  searchClientByName,
+  searchClientByCity,
   updateClient,
 } from "../models/clientModel.mjs";
 
@@ -25,7 +27,7 @@ export async function findById(clientId) {
   const client = await getClientById(clientId);
 
   if (!client) {
-    return { msg: `There is no client with id = ${clientId}` };
+    return { msg: `There is no client with id = ${clientId}.` };
   }
 
   return client;
@@ -35,7 +37,7 @@ export async function updateClientById(clientId, clientCredentials) {
   const updatedClient = await updateClient(clientId, clientCredentials);
 
   if (!updatedClient) {
-    return { msg: `There is no client with id = ${clientId}` };
+    return { msg: `There is no client with id = ${clientId}.` };
   }
 
   return updatedClient;
@@ -43,6 +45,26 @@ export async function updateClientById(clientId, clientCredentials) {
 
 export async function deleteClient(clientId) {
   const result = await deleteClientById(clientId);
+
+  return result;
+}
+
+export async function getClientsByName(clientName) {
+  const result = await searchClientByName(clientName);
+
+  if (!result) {
+    return { msg: `There is no client with name = ${clientName}.` };
+  }
+
+  return result;
+}
+
+export async function getClientsByCity(clientCity) {
+  const result = await searchClientByCity(clientCity);
+
+  if (!result) {
+    return { msg: `There is no client with city = ${clientCity}.` };
+  }
 
   return result;
 }

@@ -8,9 +8,14 @@ import {
   postClient,
   updateClient,
   deleteClient,
+  searchClient,
+  searchClientByCity,
 } from "../controllers/clientController.mjs";
 
 router.route("/").get(getClients);
+
+router.route("/search").get(searchClient);
+router.route("/search/city").get(searchClientByCity);
 
 router.route("/:id").get(getClientById);
 

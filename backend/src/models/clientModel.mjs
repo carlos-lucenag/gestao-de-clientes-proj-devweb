@@ -67,9 +67,25 @@ export async function updateClient(clientId, clientCredentials) {
 
 export async function deleteClientById(clientId) {
   const query = `DELETE FROM client WHERE id = $1`;
-  const id = [clientId]
+  const id = [clientId];
 
   const result = await pool.query(query, id);
 
   return result;
+}
+
+export async function searchClientByName(clientName) {
+  const query = `SELECT * FROM client WHERE first_name ILIKE $1`;
+  const values = [`${clientName}%`];
+  const result = await pool.query(query, values);
+
+  return result.rows;
+}
+
+export async function searchClientByCity(clientCity) {
+  const query = `SELECT * FROM client WHERE city ILIKE $1`;
+  const values = [`${clientCity}%`];
+  const result = await pool.query(query, values);
+
+  return result.rows;
 }

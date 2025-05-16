@@ -72,6 +72,38 @@ export const deleteClient = asyncHandler(async (req, res) => {
     console.error(error);
     res
       .status(400)
-      .json({ msg: `Error while deleting client with id: ${req.params.id}` });
+      .json({ msg: `Error while deleting client with id: ${req.params.id}.` });
+  }
+});
+
+// @desc Search for a client by it's first_name
+// @route GET /api/clients/name/:clientName
+// @access public
+export const searchClient = asyncHandler(async (req, res) => {
+  const name = req.query.clientName;
+  try {
+    const result = await clientService.getClientsByName(name);
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({
+      msg: `Error while getting clients by name: ${req.params.clientName}.`,
+    });
+  }
+});
+
+// @desc Search for a client by it's city
+// @route GET /api/clients/search/clientCity?=
+// @access public
+export const searchClientByCity = asyncHandler(async (req, res) => {
+  const city = req.query.clientCity;
+  try {
+    const result = await clientService.getClientsByCity(city);
+    res.status(200).json(result);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({
+      msg: `Error while getting clients by city: ${req.params.clientCity}.`,
+    });
   }
 });
