@@ -1,4 +1,4 @@
-import pool from "../config/db.mjs";
+import pool from "../../config/db.mjs";
 
 export async function getClients() {
   const query = "SELECT * FROM client;";
