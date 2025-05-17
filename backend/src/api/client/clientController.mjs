@@ -6,13 +6,13 @@ const asyncHandler = expressAsyncHandler;
 //@desc Get all clients
 //@route GET /api/clients
 //@acess public
-export const getClients = asyncHandler(async (req, res) => {
+export const getAllClients = asyncHandler(async (req, res) => {
   try {
     const result = await clientService.findAllClients();
     res.status(200).json(result);
   } catch (error) {
     console.log(error.message);
-    res.status(400).json({ msg: "Error while getting clients." });
+    res.status(400).json({ message: "Error while getting clients" });
   }
 });
 
@@ -25,7 +25,7 @@ export const getClientById = asyncHandler(async (req, res) => {
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
-    res.status(400).json({ msg: "Error while getting client." });
+    res.status(400).json({ message: "Error while getting client" });
   }
 });
 
@@ -33,14 +33,14 @@ export const getClientById = asyncHandler(async (req, res) => {
 //@route POST /api/clients
 //@acess public
 export const postClient = asyncHandler(async (req, res) => {
-  const credentials = req.body;
+  const data = req.body;
 
   try {
-    const newClient = await clientService.registerClient(credentials);
-    res.status(201).json(newClient);
+    const result = await clientService.registerClient(data);
+    res.status(201).json(result);
   } catch (error) {
     console.error(error);
-    res.status(400).send("Error while creating new Client");
+    res.status(400).json({ message: "Error while creating client" });
   }
 });
 
@@ -49,14 +49,14 @@ export const postClient = asyncHandler(async (req, res) => {
 //@acess public
 export const updateClient = asyncHandler(async (req, res) => {
   const id = parseInt(req.params.id, 10);
-  const credentials = req.body;
+  const data = req.body;
 
   try {
-    const updatedClient = await clientService.updateClientById(id, credentials);
-    res.status(200).json(updatedClient);
+    const result = await clientService.updateClientById(id, data);
+    res.status(200).json(result);
   } catch (error) {
     console.error(error);
-    res.status(404).json({ msg: error.message });
+    res.status(404).json({ message: "Error while updating client" });
   }
 });
 
@@ -64,45 +64,41 @@ export const updateClient = asyncHandler(async (req, res) => {
 //@route DELETE /api/clients/:id
 //@acess public
 export const deleteClient = asyncHandler(async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+
   try {
-    const result = clientService.deleteClient(req.params.id);
-    res.status(200).json({ result });
+    const result = clientService.deleteClient(id);
+    res.status(200).json(result);
   } catch (error) {
     console.error(error);
-    res
-      .status(400)
-      .json({ msg: `Error while deleting client with id: ${req.params.id}.` });
+    res.status(400).json({ message: "Error while deleting client" });
   }
 });
 
-// @desc Search for a client by it's first_name
-// @route GET /api/clients/name/:clientName
+// @desc Search for a client by it's first name
+// @route GET /api/clients/search?=<first_name>
 // @access public
-export const searchClient = asyncHandler(async (req, res) => {
-  const name = req.query.clientName;
+export const searchClientByName = asyncHandler(async (req, res) => {
+  const name = req.query.name;
   try {
     const result = await clientService.getClientsByName(name);
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
-    res.status(400).json({
-      msg: `Error while getting clients by name: ${req.params.clientName}.`,
-    });
+    res.status(400).json({ message: "Error while searching clients" });
   }
 });
 
 // @desc Search for a client by it's city
-// @route GET /api/clients/search/clientCity?=
+// @route GET /api/clients/search/clientCity?=<city>
 // @access public
 export const searchClientByCity = asyncHandler(async (req, res) => {
-  const city = req.query.clientCity;
+  const city = req.query.city;
   try {
     const result = await clientService.getClientsByCity(city);
     res.status(200).json(result);
   } catch (error) {
     console.error(error);
-    res.status(400).json({
-      msg: `Error while getting clients by city: ${req.params.clientCity}.`,
-    });
+    res.status(400).json({ message: "Error while searching clients" });
   }
 });
