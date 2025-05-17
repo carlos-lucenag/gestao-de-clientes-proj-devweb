@@ -1,4 +1,4 @@
-import { constants } from "../constants.mjs";
+import { constants } from "../utils/constants.mjs";
 
 const errorHandler = (err, req, res, next) => {
   const statusCode = res.statusCode ? res.statusCode : 500;

@@ -1,6 +1,5 @@
 import expressAsyncHandler from "express-async-handler";
-import pool from "../../config/db.mjs";
-import * as clientService from "../services/clientService.mjs";
+import * as clientService from "./clientService.mjs";
 
 const asyncHandler = expressAsyncHandler;
 

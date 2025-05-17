@@ -1,7 +1,4 @@
 import express from "express";
-
-const router = express.Router();
-
 import {
   getClients,
   getClientById,
@@ -10,7 +7,9 @@ import {
   deleteClient,
   searchClient,
   searchClientByCity,
-} from "../controllers/clientController.mjs";
+} from "./clientController.mjs";
+
+const router = express.Router();
 
 router.route("/").get(getClients);
 

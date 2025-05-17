@@ -6,7 +6,7 @@ import {
   searchClientByName,
   searchClientByCity,
   updateClient,
-} from "../models/clientModel.mjs";
+} from "./clientModel.mjs";
 
 export async function findAllClients() {
   const result = await getClients();
