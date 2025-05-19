@@ -2,6 +2,7 @@ import express from "express";
 import router from "./api/client/clientRoutes.mjs";
 import errorHandler from "./middlewares/errorHandler.mjs";
 import pool from "./config/db.mjs";
+import cors from "cors";
 
 const app = express();
 
@@ -11,8 +12,10 @@ app.use(express.json());
 // Routes
 app.use("/api/clients", router);
 
+app.use(cors());
+
 app.get("/", (req, res) => {
-  res.status(200).send("Hello World!");
+  res.status(200).json({ message: "Hello World!" });
 });
 
 app.get("/db-test", async (req, res) => {

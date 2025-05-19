@@ -1,12 +1,13 @@
-import {
-  createClient,
-  deleteClientById,
-  getClientById,
+import clientModel from "./clientModel.mjs";
+const {
   getClients,
+  createClient,
+  getClientById,
+  updateClient,
+  deleteClientById,
   searchClientByName,
   searchClientByCity,
-  updateClient,
-} from "./clientModel.mjs";
+} = clientModel;
 
 export async function findAllClients() {
   const result = await getClients();

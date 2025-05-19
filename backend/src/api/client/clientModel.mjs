@@ -1,6 +1,11 @@
 import pool from "../../config/db.mjs";
 
-export async function getClients() {
+/**
+ * Returns all clients from the database
+ * 
+ * @returns {Promise<Array>} Client list
+ */
+async function getClients() {
   const query = "SELECT * FROM client;";
 
   const result = await pool.query(query);
@@ -8,7 +13,20 @@ export async function getClients() {
   return result.rows;
 }
 
-export async function createClient(data) {
+/**
+ * Creates a new client in the database
+ * 
+ * @param {Object} data - Data of the new client
+ * @param {string} data.first_name - Client's first name
+ * @param {string} data.last_name - Client's last name
+ * @param {string} data.email - Client's email
+ * @param {string} data.cpf - Client's cpf
+ * @param {string} data.phone - Client's phone
+ * @param {string} data.city - Client's city
+ * 
+ * @returns {Promise<Object>} Created client with all fields returned by the database
+ */
+async function createClient(data) {
   const query = `
     INSERT INTO client (first_name, last_name, email, cpf, phone, city)
     VALUES ($1, $2, $3, $4, $5, $6)
@@ -22,7 +40,6 @@ export async function createClient(data) {
     data.cpf,
     data.phone,
     data.city,
-    id,
   ];
 
   const result = await pool.query(query, values);
@@ -30,7 +47,7 @@ export async function createClient(data) {
   return result.rows[0];
 }
 
-export async function getClientById(id) {
+async function getClientById(id) {
   const query = `SELECT * FROM client WHERE id = $1`;
   const values = [id];
 
@@ -39,7 +56,7 @@ export async function getClientById(id) {
   return result.rows[0];
 }
 
-export async function updateClient(id, data) {
+async function updateClient(id, data) {
   const query = `
     UPDATE client
     SET first_name = $1,
@@ -67,14 +84,14 @@ export async function updateClient(id, data) {
   return result.rows[0];
 }
 
-export async function deleteClientById(id) {
+async function deleteClientById(id) {
   const query = `DELETE FROM client WHERE id = $1`;
   const result = await pool.query(query, id);
 
-  return result;
+  return result.rows[0];
 }
 
-export async function searchClientByName(name) {
+async function searchClientByName(name) {
   const query = `SELECT * FROM client WHERE first_name ILIKE $1`;
   const values = [`${name}%`];
   const result = await pool.query(query, values);
@@ -82,10 +99,20 @@ export async function searchClientByName(name) {
   return result.rows;
 }
 
-export async function searchClientByCity(city) {
+async function searchClientByCity(city) {
   const query = `SELECT * FROM client WHERE city ILIKE $1`;
   const values = [`${city}%`];
   const result = await pool.query(query, values);
 
   return result.rows;
 }
+
+export default {
+  getClients,
+  createClient,
+  getClientById,
+  updateClient,
+  deleteClientById,
+  searchClientByName,
+  searchClientByCity,
+};
