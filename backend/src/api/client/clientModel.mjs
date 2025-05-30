@@ -6,7 +6,7 @@ import pool from "../../config/db.mjs";
  * @returns {Promise<Array>} Client list
  */
 async function getClients() {
-  const query = "SELECT * FROM client;";
+  const query = "SELECT * FROM client ORDER BY id;";
 
   const result = await pool.query(query);
 
