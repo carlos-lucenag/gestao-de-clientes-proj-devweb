@@ -1,7 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import ClientList from './components/ClientList';
-import ClientForm from './components/ClientForm';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import ClientList from "./components/ClientList";
+import ClientForm from "./components/ClientForm";
 
 function App() {
   return (
@@ -20,4 +20,4 @@ function App() {
   );
 }
 
-export default App; 
+export default App;

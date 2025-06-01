@@ -86,7 +86,7 @@ async function updateClient(id, data) {
 
 async function deleteClientById(id) {
   const query = `DELETE FROM client WHERE id = $1`;
-  const result = await pool.query(query, id);
+  const result = await pool.query(query, [id]);
 
   return result.rows[0];
 }
