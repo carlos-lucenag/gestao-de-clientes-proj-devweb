@@ -56,33 +56,35 @@ function ClientForm() {
   };
 
   return (
-    <div className="card form-card">
+    <div className="form-card">
       <h2>{isEditing ? "Edit Client" : "New Client"}</h2>
       <form onSubmit={handleSubmit} className="client-form">
-        <div className="form-group">
-          <label htmlFor="first_name">First Name</label>
-          <input
-            type="text"
-            id="first_name"
-            name="first_name"
-            value={formData.first_name}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
-        </div>
+        <div className="form-row">
+          <div className="form-group">
+            <label htmlFor="first_name">First Name</label>
+            <input
+              type="text"
+              id="first_name"
+              name="first_name"
+              value={formData.first_name}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </div>
 
-        <div className="form-group">
-          <label htmlFor="last_name">Last Name</label>
-          <input
-            type="text"
-            id="last_name"
-            name="last_name"
-            value={formData.last_name}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
+          <div className="form-group">
+            <label htmlFor="last_name">Last Name</label>
+            <input
+              type="text"
+              id="last_name"
+              name="last_name"
+              value={formData.last_name}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </div>
         </div>
 
         <div className="form-row">
@@ -111,7 +113,9 @@ function ClientForm() {
               className="form-input"
             />
           </div>
+        </div>
 
+        <div className="form-row">
           <div className="form-group">
             <label htmlFor="phone">Phone</label>
             <input
@@ -124,19 +128,19 @@ function ClientForm() {
               className="form-input"
             />
           </div>
-        </div>
 
-        <div className="form-group">
-          <label htmlFor="city">City</label>
-          <input
-            type="text"
-            id="city"
-            name="city"
-            value={formData.city}
-            onChange={handleChange}
-            required
-            className="form-input"
-          />
+          <div className="form-group">
+            <label htmlFor="city">City</label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              required
+              className="form-input"
+            />
+          </div>
         </div>
 
         <div className="form-actions">
@@ -148,7 +152,7 @@ function ClientForm() {
             Cancel
           </button>
           <button type="submit" className="btn-primary">
-            {isEditing ? "Atualizar" : "Cadastrar"}
+            {isEditing ? "Update" : "Create"}
           </button>
         </div>
       </form>
